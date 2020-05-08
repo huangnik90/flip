@@ -9,6 +9,9 @@ import ReduxThunk from 'redux-thunk'
 import {BrowserRouter} from 'react-router-dom'
 
 import Reducers from './2.reducers'
+import './support/fontawesome-free/css/fontawesome.min.css'
+import './support/fontawesome-free/css/all.min.css';
+
 
 const globalState = createStore(Reducers,{},applyMiddleware(ReduxThunk))
 
