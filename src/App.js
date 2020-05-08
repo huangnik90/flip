@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Route,Switch } from 'react-router-dom'
 
+import Nasabah from './components/nasabah/nasabah'
+import NasabahDetail from './components/nasabah/nasabahDetail'
+
+
+class App extends React.Component{
+  render(){
+    return(
+      <Switch>
+         <Route path='/' component={Nasabah} exact></Route>
+         <Route path="/detailNasabah/:id" component={NasabahDetail}></Route>
+
+      </Switch>
+    )
+  }
+}
 export default App;
