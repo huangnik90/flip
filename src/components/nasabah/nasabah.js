@@ -82,24 +82,24 @@ class Home extends React.Component{
             return(
                 <div className="container"  id={`${val.status==="SUCCESS"?"sideColorIjo":"sideColorOrange"}`} key={index}>
                     <div className="detailMinor">
-                    <p>
-                        <b>
-                        {val.sender_bank.toUpperCase()} 
-                        <i className="fas fa-arrow-right"></i>
-                        {val.beneficiary_bank.toUpperCase()}
-                        </b>
-                    </p>
-                    <p>{val.beneficiary_name}</p>
-                    {this.formatMoney(val.amount)} 
-                        <i style={{fontSize:"0.5rem",paddingBottom:"2px",margin:"0px 5px 2px 5px"}} className="fas fa-circle fa-xs"></i>
-                     {this.handleFormatDate(val.completed_at)}
-                    </div>
-                    <div className="button">
+                        <p>
+                            <b>
+                            {val.sender_bank.toUpperCase()} 
+                            <i className="fas fa-arrow-right"></i>
+                            {val.beneficiary_bank.toUpperCase()}
+                            </b>
+                        </p>
 
+                         <p>{val.beneficiary_name}</p>
+                    
+                      {this.formatMoney(val.amount)}  <i style={{fontSize:"0.5rem",paddingBottom:"2px",margin:"0px 5px 2px 5px"}} className="fas fa-circle fa-xs"></i>
+                      {this.handleFormatDate(val.completed_at)}
+                    </div>
+
+                    <div className="button">
                       <div className={`${val.status==="SUCCESS"?"btnIjo":"btnLain"}`}>
                          {val.status ==="SUCCESS"?"Berhasil":"Pengecekan"}
                       </div>
-
                     </div>
                 </div>
             )
@@ -116,9 +116,26 @@ class Home extends React.Component{
                     <h3>Halo Kak!</h3>
                     <p>Kamu telah melakukan transaksi sebesar <label style={{color:"red",fontWeight:"bold"}}>Rp. 5,000,000 </label>sejak menggunakan Flip.</p>
                 </div>
-             
-                <input type="text" placeholder="Masukan Nama atau Bank"/> 
+              <div className="searchMain">
+                  <div className="searchGroup">
+                    <i className="fas fa-search"></i>
+                        <input type="text" placeholder="Masukan nama atau bank"/>
+                    </div>
+
+                    <div className="dropDown">
+                      <i  id="arrow" className="fas fa-angle-down"></i>
+                      <select>
+                            <option selected disable>URUTKAN</option>
+                            <option>Nama A - Z</option>
+                            <option>Nama Z - A</option>
+                            <option>Tanggal Terbaru</option>
+                            <option>Tanggal Terlama</option>
+                      </select>
+                    
+                    </div>
+              </div>
                 
+
                 <div>
                     {this.renderJsx()}
                 </div>

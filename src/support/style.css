@@ -19,10 +19,10 @@
 .container .detailMinor{
     justify-content: flex-start;
     width: 350px;
+    margin-left: 10px;
+    padding-bottom: 10px;
 }
-.detailMinor li{
-    display:inline
-}
+
 .container .button{
     display: flex;
     justify-content: flex-end;
@@ -60,3 +60,62 @@
     border-left: 4px solid #fd6542;
     margin-right: 20px;
 }
+
+input[type=text]{
+    width: 70%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+input[type=text]:focus{
+    border-color: dodgerblue;
+    box-shadow: 0 0 7px 0 dodgerblue;
+}
+
+.searchGroup input[type=text]{
+    padding-left: 40px;
+}
+.searchGroup{
+    display: inline;
+    position: relative;
+}
+.searchGroup i{
+    position: absolute;
+    left: 14px;
+    top: 5px;
+    color: #aaa;
+}
+.dropDown{
+    display: inline;
+    position: relative;
+}
+.dropDown select{
+    width: 25%;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+#arrow{
+    position: absolute;
+    color: red;
+    right: 22px;
+    bottom: 0px;
+}
+
+.searchMain{
+    display: inline;
+}
+
+
