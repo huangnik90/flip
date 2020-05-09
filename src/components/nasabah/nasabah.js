@@ -7,7 +7,9 @@ import '../../support/style.css'
 class Home extends React.Component{
     state={
         rows:[],
-        errorMessage:''
+        errorMessage:'',
+        searchName:'',
+        dropDownCommand:''
     }
 
     _isMounted = false;
@@ -23,10 +25,25 @@ class Home extends React.Component{
     getNasabahDetail = async function () {
         const data = await listNasabahFunction()
         if(data){
-            //ambil hanya data aja yang object
-            let result = Object.values(data.data)
-            //masukin ke state biar gampang rendering
-            this.setState({rows:result})
+          let result = Object.values(data.data)
+          if(this.state.dropDownCommand && this.state.dropDownCommand === 'az'){
+            result.sort((a,b)=> {  return a.beneficiary_name > b.beneficiary_name ? 1: -1})
+          }else if(this.state.dropDownCommand && this.state.dropDownCommand === 'za'){
+            result.sort((a,b)=> {  return a.beneficiary_name < b.beneficiary_name ? 1: -1})
+          }else if(this.state.dropDownCommand && this.state.dropDownCommand === 'oldDate'){
+            result.sort((a,b)=> {  
+              let sortDate = new Date(a.completed_at);
+              sortDate.getTime()
+              return a.sortDate < b.sortDate ? 1: -1})
+          }else if(this.state.dropDownCommand && this.state.dropDownCommand === 'latestDate'){
+            result.sort((a,b)=> {  
+              let sortDate = new Date(a.completed_at);
+              sortDate.getTime()
+              return a.sortDate > b.sortDate ? 1: -1})
+          }
+
+          this.setState({rows:result})
+          
         }else{
             this.setState({errorMessage:"Data Kosong"})
         }
@@ -75,10 +92,22 @@ class Home extends React.Component{
         }  
         return bulan
       }
-
+      handleFieldText=(e)=>{
+        this.setState({searchName:e.target.value})
+      }
+      handleDropDown=(e)=>{
+        this.setState({dropDownCommand:e.target.value,searchName:""},()=>{
+          this.getNasabahDetail()
+        })
+      }
 
     renderJsx =()=>{
-        var jsx = this.state.rows.map((val,index)=>{
+        let searchFilter
+          searchFilter = this.state.rows.filter((val)=>{
+            return val.beneficiary_name.toLowerCase().includes(this.state.searchName) || val.sender_bank.toLowerCase().includes(this.state.searchName) || val.beneficiary_bank.toLowerCase().includes(this.state.searchName)
+          })
+       
+        var jsx = searchFilter.map((val,index)=>{
             return(
                 <div className="container"  id={`${val.status==="SUCCESS"?"sideColorIjo":"sideColorOrange"}`} key={index}>
                     <div className="detailMinor">
@@ -95,7 +124,7 @@ class Home extends React.Component{
                       {this.formatMoney(val.amount)}  <i style={{fontSize:"0.5rem",paddingBottom:"2px",margin:"0px 5px 2px 5px"}} className="fas fa-circle fa-xs"></i>
                       {this.handleFormatDate(val.completed_at)}
                     </div>
-
+              
                     <div className="button">
                       <div className={`${val.status==="SUCCESS"?"btnIjo":"btnLain"}`}>
                          {val.status ==="SUCCESS"?"Berhasil":"Pengecekan"}
@@ -119,25 +148,25 @@ class Home extends React.Component{
               <div className="searchMain">
                   <div className="searchGroup">
                     <i className="fas fa-search"></i>
-                        <input type="text" placeholder="Masukan nama atau bank"/>
+                        <input type="text" onChange={this.handleFieldText} placeholder="Masukan nama atau bank"/>
                     </div>
 
                     <div className="dropDown">
                       <i  id="arrow" className="fas fa-angle-down"></i>
-                      <select>
-                            <option selected disable>URUTKAN</option>
-                            <option>Nama A - Z</option>
-                            <option>Nama Z - A</option>
-                            <option>Tanggal Terbaru</option>
-                            <option>Tanggal Terlama</option>
+                      <select onChange={this.handleDropDown}>
+                            <option value="">URUTKAN</option>
+                            <option value="az">Nama A - Z</option>
+                            <option value="za">Nama Z - A</option>
+                            <option value="oldDate">Tanggal Terbaru</option>
+                            <option value="latestDate">Tanggal Terlama</option>
                       </select>
                     
                     </div>
               </div>
-                
-
                 <div>
-                    {this.renderJsx()}
+                  
+                    {this.state.rows?this.renderJsx():"loading..."}
+
                 </div>
             </div>
         )
