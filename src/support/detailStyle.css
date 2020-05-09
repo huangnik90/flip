@@ -1,0 +1,73 @@
+.firstRow  {
+    display: flex;
+    justify-content: space-around;
+}
+
+.detailContainer{
+    background-color: white;
+    margin-top: 10px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+
+}
+
+.btnSuccess{
+    background-color: #56b586;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 8px;
+    cursor: arrow;
+}
+.middle{
+    width: 20%;
+}
+.btnPending{
+    border-radius: 5px;
+    border:1px solid #fd6542;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 8px;
+    cursor: arrow;
+}
+
+.logo{
+    height: auto;
+    padding-right: 20px;
+    padding-left: 40px;
+    padding-top: 15px;
+}
+
+.secondRow{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.mainDetail{
+    height: auto;
+    width: 150px;
+}
+
+.mainDetail br {
+        line-height: 150%;
+}
+
+.btnBack{
+    border-radius: 5px;
+    border:1px solid #FD6442;
+    color: #FD6442;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.btnBack:hover{
+    background-color: white;
+    color: black;
+}

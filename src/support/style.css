@@ -14,20 +14,15 @@
     margin-top: 10px;
     padding: 5px 5px 5px 5px;
     display: flex;
+    justify-content: space-around;
     border-radius: 10px;
 }
 .container .detailMinor{
-    justify-content: flex-start;
     width: 350px;
-    margin-left: 10px;
-    padding-bottom: 10px;
 }
 
 .container .button{
-    display: flex;
-    justify-content: flex-end;
-    width: 180px;
-    padding-top: 8%;
+    padding-top: 35px;
 }
 
 .btnIjo{
@@ -37,7 +32,6 @@
     border-radius: 5px;
     height: 30px;
     width: 100%;
-    justify-content: center;
     padding-top: 5px;
     padding-left: 16px;
 }
@@ -47,17 +41,16 @@
     border-radius: 5px;
     height: 30px;
     width: 100%;
-    justify-content: center;
     padding-top: 5px;
     padding-left: 10px;
 }
 
 #sideColorIjo{
-    border-left: 4px solid #56b586;
+    border-left: 6px solid #56b586;
     margin-right: 20px;
 }
 #sideColorOrange{
-    border-left: 4px solid #fd6542;
+    border-left: 6px solid #fd6542;
     margin-right: 20px;
 }
 

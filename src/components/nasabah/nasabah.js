@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { listNasabahFunction } from './saga';
 import '../../support/style.css'
-
+import {handleFormatDate, formatMoney} from './globalFunction'
 
 class Home extends React.Component{
     state={
@@ -25,7 +25,8 @@ class Home extends React.Component{
     getNasabahDetail = async function () {
         const data = await listNasabahFunction()
         if(data){
-          let result = Object.values(data.data)
+          
+          let result = Object.values(data.data) || []
 
           if(this.state.dropDownCommand && this.state.dropDownCommand === 'az'){
             result.sort((a,b)=> {  return a.beneficiary_name > b.beneficiary_name ? 1: -1})
@@ -51,48 +52,6 @@ class Home extends React.Component{
 
     }
 
-    formatMoney=(number)=>
-    { return number.toLocaleString('in-RP', {style : 'currency', currency: 'IDR', minimumFractionDigits: 0,
-    maximumFractionDigits: 0})}
-
-      handleFormatDate (dateBefore,time){
-        let dateAfter = new Date(dateBefore);
-      
-        return `${dateAfter.getDate()} ${this.getMonthNow(dateAfter.getMonth().toString())} ${dateAfter.getFullYear()} ${time ? `${dateAfter.getHours()}:${dateAfter.getMinutes()}:${dateAfter.getSeconds()}`: ''}`;
-      };
-      
-    getMonthNow(bulanNow) {
-        let bulan = '';
-      
-        if(bulanNow) {
-          if(bulanNow.toString() === '0') {
-            bulan = 'Januari';
-          } else if(bulanNow.toString() === '1') {
-            bulan = 'Februari';
-          } else if(bulanNow.toString() === '2') {
-            bulan = 'Maret';
-          } else if(bulanNow.toString() === '3') {
-            bulan = 'April';
-          } else if(bulanNow.toString() === '4') {
-            bulan = 'Mei';
-          } else if(bulanNow.toString() === '5') {
-            bulan = 'Juni';
-          } else if(bulanNow.toString() === '6') {
-            bulan = 'Juli';
-          } else if(bulanNow.toString() === '7') {
-            bulan = 'Agustus';
-          } else if(bulanNow.toString() === '8') {
-            bulan = 'September';
-          } else if(bulanNow.toString() === '9') {
-            bulan = 'Oktober';
-          } else if(bulanNow.toString() === '10') {
-            bulan = 'November';
-          } else if(bulanNow.toString() === '11') {
-            bulan = 'Desember';
-          }
-        }  
-        return bulan
-      }
       handleFieldText=(e)=>{
         this.setState({searchName:e.target.value})
       }
@@ -108,8 +67,7 @@ class Home extends React.Component{
             data = this.state.rows[key]
           }
         }
-        console.log(data)
-        localStorage.setItem('myData', data);
+        localStorage.setItem('myData', JSON.stringify(data));
       }
 
     renderJsx =()=>{
@@ -132,8 +90,8 @@ class Home extends React.Component{
 
                          <p>{val.beneficiary_name}</p>
                     
-                      {this.formatMoney(val.amount)}  <i style={{fontSize:"0.5rem",paddingBottom:"2px",margin:"0px 5px 2px 5px"}} className="fas fa-circle fa-xs"></i>
-                      {this.handleFormatDate(val.completed_at)}
+                      {formatMoney(val.amount)}  <i style={{fontSize:"0.5rem",paddingBottom:"2px",margin:"0px 5px 2px 5px"}} className="fas fa-circle fa-xs"></i>
+                      {handleFormatDate(val.completed_at)}
                     </div>
               
                     <div className="button">
