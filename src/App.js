@@ -12,7 +12,7 @@ class App extends React.Component{
     return(
       <Switch>
          <Route path='/' component={Nasabah} exact></Route>
-         <Route path="/detailNasabah/:id" component={NasabahDetail}></Route>
+         <Route path="/detailTransaksi/:id" component={NasabahDetail}></Route>
 
       </Switch>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { listNasabahFunction } from './saga';
 import '../../support/style.css'
 
@@ -18,7 +18,7 @@ class Home extends React.Component{
         this.getNasabahDetail()
     }
 
-    componentWillMount  (){
+    UNSAFE_componentWillMount  (){
         this._isMounted = false
     }
 
@@ -26,6 +26,7 @@ class Home extends React.Component{
         const data = await listNasabahFunction()
         if(data){
           let result = Object.values(data.data)
+
           if(this.state.dropDownCommand && this.state.dropDownCommand === 'az'){
             result.sort((a,b)=> {  return a.beneficiary_name > b.beneficiary_name ? 1: -1})
           }else if(this.state.dropDownCommand && this.state.dropDownCommand === 'za'){
@@ -100,6 +101,16 @@ class Home extends React.Component{
           this.getNasabahDetail()
         })
       }
+      getData =(id)=>{
+        let data
+        for (const key in this.state.rows){
+          if(this.state.rows[key].id===id){
+            data = this.state.rows[key]
+          }
+        }
+        console.log(data)
+        localStorage.setItem('myData', data);
+      }
 
     renderJsx =()=>{
         let searchFilter
@@ -126,10 +137,13 @@ class Home extends React.Component{
                     </div>
               
                     <div className="button">
-                      <div className={`${val.status==="SUCCESS"?"btnIjo":"btnLain"}`}>
-                         {val.status ==="SUCCESS"?"Berhasil":"Pengecekan"}
-                      </div>
+                      <Link  style={{textDecoration:"none"}} to={`/detailTransaksi/${val.id}`}>
+                        <div onClick={()=>this.getData(val.id)} className={`${val.status==="SUCCESS"?"btnIjo":"btnLain"}`}>
+                          {val.status ==="SUCCESS"?"Berhasil":"Pengecekan"}
+                        </div>
+                      </Link>
                     </div>
+                    
                 </div>
             )
         })
