@@ -83,6 +83,8 @@ input[type=text]{
     padding: 8px;
     box-sizing: border-box;
     transition: .3s;
+  height: 3em;
+
 }
 
 input[type=text]:focus{
@@ -119,7 +121,9 @@ input[type=text]:focus{
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+    height: 3em;
 }
+
 #arrow{
     position: absolute;
     color: red;
