@@ -35,6 +35,11 @@
     padding-top: 35px;
 }
 
+.btnIjo:hover{
+    background-color:white;
+    color: black;
+}
+
 .btnIjo{
     border:1px solid #56b586;
     background-color: #56b586;
@@ -56,6 +61,10 @@
     padding-left: 10px;
 }
 
+.btnLain:hover{
+    color: white;
+    background-color: #fd6542;
+}
 #sideColorIjo{
     border-left: 6px solid #56b586;
     margin-right: 20px;
