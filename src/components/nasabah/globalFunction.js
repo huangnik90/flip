@@ -1,8 +1,15 @@
+    //untuk tampilan currency, minimum fraction itu untuk menghilangkan ",00"
+    export function formatMoney(number){ 
+      return number.toLocaleString('in-RP', {
+        style : 'currency', 
+        currency: 'IDR', 
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    })}
 
-    export function formatMoney(number)
-    { return number.toLocaleString('in-RP', {style : 'currency', currency: 'IDR', minimumFractionDigits: 0,
-    maximumFractionDigits: 0})}
 
+    //bikin format tanggal berdasarkan kriteria Flip, 
+    //saya tambahkan parameter time jika suatu saat ingin menampilkan jamnya *true or false
     export function handleFormatDate (dateBefore, time){
         let dateAfter = new Date(dateBefore);
       

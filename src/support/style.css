@@ -4,6 +4,13 @@
     height: auto;
 }
 
+.loadingProgress{
+    background-color: white;
+    margin-top: 10px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+}
+
 .bigDocker h1{
     text-align: center;
     font-weight: lighter;
@@ -17,8 +24,11 @@
     justify-content: space-around;
     border-radius: 10px;
 }
-.container .detailMinor{
-    width: 350px;
+.divider{
+    width: 15%;
+}
+.detailMinor{
+    padding-bottom: 15px;
 }
 
 .container .button{
@@ -35,6 +45,7 @@
     padding-top: 5px;
     padding-left: 16px;
 }
+
 .btnLain{
     border:1px solid #fd6542;
     color: black;    
@@ -112,3 +123,46 @@ input[type=text]:focus{
 }
 
 
+@media only screen and (max-width: 600px) {
+    .button{
+        position: relative;
+    }
+    .btnIjo{
+        visibility: hidden;
+    }
+    .btnIjo:after{
+        border:1px solid #56b586;
+        background-color: #56b586;
+        color: white;
+        border-radius: 5px;
+        font-size: 15px;
+        content: "OK";
+        visibility: visible;
+        padding: 10px;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+  
+
+    .btnLain{
+        visibility: hidden;
+    }
+    .btnLain:after{
+        border:1px solid #fd6542;
+        color: black;   
+        border-radius: 5px;
+        font-size: 15px;
+        content: "PD";
+        visibility: visible;
+        padding: 10px;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+    .detailMinor{
+        font-size: 2vw;
+    }
+ 
+
+}
